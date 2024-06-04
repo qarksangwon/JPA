@@ -60,7 +60,7 @@ class ItemRepositoryTest {
     @DisplayName("LessThan 테스트")
     public void findBytPriceLessThanTest(){
         this.createItemTest();
-        List<Item> itemList = itemRepository.findByPriceLessThan(70001);
+        List<Item> itemList = itemRepository.findByPriceLessThanOrderByPriceDesc(70001);
         for (Item o : itemList){
             System.out.println(o.toString());
         }
