@@ -2,6 +2,7 @@ package com.spb.total.repository;
 
 import com.spb.total.constant.ItemSellStatus;
 import com.spb.total.entity.Item;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
+@Slf4j
 class ItemRepositoryTest {
     @Autowired
     ItemRepository itemRepository;
@@ -83,7 +85,7 @@ class ItemRepositoryTest {
         this.createItemTest();
         List<Item> itemList = itemRepository.findByItemNameContaining("실제");
         for(Item o : itemList){
-            System.out.println(o.toString());
+            log.info(o.toString());
         }
     }
 
