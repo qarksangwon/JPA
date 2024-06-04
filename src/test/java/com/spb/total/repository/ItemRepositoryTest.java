@@ -62,7 +62,7 @@ class ItemRepositoryTest {
         this.createItemTest();
         List<Item> itemList = itemRepository.findByPriceLessThan(70001);
         for (Item o : itemList){
-            System.out.println("상품 명 : " + o.getItemName() + "/ 가격 : " + o.getPrice());
+            System.out.println(o.toString());
         }
     }
 }

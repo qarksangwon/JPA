@@ -3,6 +3,7 @@ package com.spb.total.entity;
 import com.spb.total.constant.ItemSellStatus;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity // JPA 에 Entity 클래스임을 지정. Entity 는 반드시 기본 키를(@Id) 가져야 한다.
+@ToString
 public class Item {
     @Id
     @Column(name = "item_id") // 컬럼명 지정
