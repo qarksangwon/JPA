@@ -24,7 +24,8 @@ class ItemRepositoryTest {
     public void createItemTest() {
         for(int i = 1; i <= 10; i++) {
             Item item = new Item();
-            item.setItemName("테스트 상품" + i);
+            if(i < 5) item.setItemName("테스트 상품" + i);
+            else item.setItemName("실제 상품" + i);
             item.setPrice(10000*i);
             item.setItemDetail("테스트 상품 상세 설명"+ i);
             item.setItemSellStatus(ItemSellStatus.SELL);
@@ -71,6 +72,16 @@ class ItemRepositoryTest {
     public void findByPriceBetweenTest(){
         this.createItemTest();
         List<Item> itemList = itemRepository.findByPriceBetween(20000,40000);
+        for(Item o : itemList){
+            System.out.println(o.toString());
+        }
+    }
+
+    @Test
+    @DisplayName("키워드 포함 테스트")
+    public void findByItemNameContainingTest(){
+        this.createItemTest();
+        List<Item> itemList = itemRepository.findByItemNameContaining("실제");
         for(Item o : itemList){
             System.out.println(o.toString());
         }
