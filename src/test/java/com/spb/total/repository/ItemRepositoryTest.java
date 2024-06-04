@@ -65,4 +65,15 @@ class ItemRepositoryTest {
             System.out.println(o.toString());
         }
     }
+
+    @Test
+    @DisplayName("Between 테스트")
+    public void findByPriceBetweenTest(){
+        this.createItemTest();
+        List<Item> itemList = itemRepository.findByPriceBetween(20000,40000);
+        for(Item o : itemList){
+            System.out.println(o.toString());
+        }
+    }
+
 }
