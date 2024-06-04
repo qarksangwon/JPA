@@ -47,12 +47,22 @@ class ItemRepositoryTest {
 
     @Test
     @DisplayName("상품명, 상품상세설명")
-    public void findByItemNameOrItemDetail() {
+    public void findByItemNameOrItemDetailTest() {
         this.createItemTest();
         List<Item> itemList = itemRepository.findByItemNameOrItemDetail("테스트 상품1", "테스트 상품 상세 설명5");
         for(Item item : itemList) {
             System.out.println("상품 명 : " + item.getItemName());
             System.out.println("상품 설명 : " + item.getItemDetail());
+        }
+    }
+
+    @Test
+    @DisplayName("LessThan 테스트")
+    public void findBytPriceLessThanTest(){
+        this.createItemTest();
+        List<Item> itemList = itemRepository.findByPriceLessThan(70001);
+        for (Item o : itemList){
+            System.out.println("상품 명 : " + o.getItemName() + "/ 가격 : " + o.getPrice());
         }
     }
 }
