@@ -85,7 +85,7 @@ class ItemRepositoryTest {
         this.createItemTest();
         List<Item> itemList = itemRepository.findByItemNameContaining("실제");
         for(Item o : itemList){
-            log.info(o.toString());
+            log.error(o.toString());
         }
     }
 
