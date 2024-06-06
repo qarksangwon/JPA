@@ -51,8 +51,8 @@ class CartRepositoryTest {
         cart.setCartName("오늘의 쇼핑");
         cart.setMember(member);
         cartRepository.save(cart);
-        em.flush(); // 데이터베이스에 강제 반영
-        em.clear();
+        em.flush(); // 영속성 컨텍스트에 데이터 저장 후  flush() 호출하여 데이터베이스에 반영
+        em.clear(); // 영속성 켄텍스트를 비움
 
         Optional<Cart> saveCart = cartRepository.findById(cart.getId());
         if(saveCart.isPresent()){
