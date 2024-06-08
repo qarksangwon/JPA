@@ -90,4 +90,12 @@ class ItemRepositoryTest {
         }
     }
 
+    @Test
+    @DisplayName("@Query 테스트")
+    public void findByItemDetailTest(){
+        this.createItemTest();
+        List<Item> itemList = itemRepository.findByItemDetailByNative("설명2");
+        for(Item i : itemList) log.warn(i.toString());
+    }
+
 }
