@@ -79,9 +79,12 @@ class OrderRepositoryTest {
             orderItem.setCount(10);
             orderItem.setOrderPrice(1000);
             orderItem.setOrder(order);
+            // 영속성 컨텍스트에 저장되지 않은 orderItem entity 를 order entity 에 저장
             order.getOrderItemList().add(orderItem);
         }
+        //order entity 를 저장 하면서 flush() 호출로 영속성 컨텍스트 반영
         orderRepository.saveAndFlush(order);
+        //영속성 상태를 초기화
         em.clear();
 
         //주문 조회
