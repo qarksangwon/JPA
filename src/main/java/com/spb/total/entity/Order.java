@@ -3,6 +3,7 @@ package com.spb.total.entity;
 import com.spb.total.constant.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @Table(name = "orders")
+@ToString
 public class Order {
     @Id
     @GeneratedValue
