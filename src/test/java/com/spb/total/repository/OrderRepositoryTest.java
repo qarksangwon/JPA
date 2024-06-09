@@ -92,4 +92,14 @@ class OrderRepositoryTest {
         log.info(String.valueOf(saveOrder.getOrderItemList().size()));
         log.warn(saveOrder.toString());
     }
+
+    @Test
+    @DisplayName("고아 객체 제거 테스트")
+    public void orphanRemovalTest(){
+        Order order = this.createOrder();
+        order.getOrderItemList().remove(0);
+        em.flush();
+        log.info(String.valueOf(order.getOrderItemList().size()));
+    }
+
 }
