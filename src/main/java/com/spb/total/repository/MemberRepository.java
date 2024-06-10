@@ -13,6 +13,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     //프로그램이 죽는걸 방지해서 없다고 알려주기 위한 반환타입
     Optional<Member> findByEmail(String email);  // 개별 회원 정보 조회
     List<Member> findAll(); // 전체 회원 조회
+    boolean existsByEmail(String email); // 이메일 중복 체크
     Optional<Member> findByEmailAndPwd(String email, String pwd); // 로그인
 }
 

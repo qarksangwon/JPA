@@ -63,4 +63,12 @@ class MemberRepositoryTest {
         log.warn("로그인 체크 2 : " + logIn2.isEmpty());
     }
 
+    @Test
+    @DisplayName("회원 email 중복 체크 테스트")
+    public void existByEmailTest(){
+        this.createMemberTest();
+        boolean isExist = memberRepository.existsByEmail("test1@test.com");
+        if(isExist) log.warn("이미 있음");
+        else log.info("가입 가능");
+    }
 }
