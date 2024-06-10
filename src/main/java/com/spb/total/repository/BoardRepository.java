@@ -1,6 +1,8 @@
 package com.spb.total.repository;
 
 import com.spb.total.entity.Board;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,9 +11,13 @@ import java.util.Optional;
 
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
-    Optional<Board> findByTitleContaining(String keyword);
+    List<Board> findByTitleContaining(String keyword);
     List<Board> findByContentContaining(String keyword);
-    List<Board> findAll();
+    
+    // 페이징된 결과를 나타내기 위해 사용하는 객체
+    Page<Board> findAll(Pageable pageable);
+    List<Board> findByMemberEmail(String email);
+
 }
 
 // JUnit 테스트 목록
