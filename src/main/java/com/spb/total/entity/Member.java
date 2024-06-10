@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,11 +22,11 @@ public class Member {
     @Column(unique = true)
     private String email;
     private String image;
-    private Date regDate;
+    private LocalDateTime regDate;
 
     @PrePersist // DB 에 Insert 되기 전에 실행되는 메소드
     public void prePersist(){
-        regDate = new Date();
+        regDate = LocalDateTime.now();
     }
 
 }
