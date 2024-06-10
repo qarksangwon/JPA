@@ -33,6 +33,21 @@ public class MemberService {
         return convertEntityToDto(member);
     }
 
+    // 회원 가입
+    public boolean createMember(MemberDto memberDto){
+        boolean isExist = memberRepository.existsByEmail(memberDto.getEmail());
+        if(isExist) return false;
+        else{
+            Member member = new Member();
+            member.setPwd(memberDto.getPwd());
+            member.setEmail(memberDto.getEmail());
+            member.setName(memberDto.getName());
+            member.setImage(memberDto.getImage());
+            memberRepository.save(member);
+            return true;
+        }
+    }
+
     // 회원 수정
     public boolean modifyMember(MemberDto memberDto){
         try{
