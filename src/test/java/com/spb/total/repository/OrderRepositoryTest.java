@@ -60,7 +60,7 @@ class OrderRepositoryTest {
         Member member = new Member();
         member.setName("박상원");
         member.setEmail("Test@test.com");
-        member.setRegDate(LocalDateTime.now());
+//        member.setRegDate(LocalDateTime.now());
         memberRepository.save(member);
         order.setMember(member);
         orderRepository.save(order);

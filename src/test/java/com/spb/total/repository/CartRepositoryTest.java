@@ -38,7 +38,7 @@ class CartRepositoryTest {
         member.setEmail("parksangwon@kh.com");
         member.setPwd("1234");
         member.setName("박상원");
-        member.setRegDate(LocalDateTime.now());
+//        member.setRegDate(LocalDateTime.now());
         return member;
     }
 

@@ -30,7 +30,7 @@ class MemberRepositoryTest {
             member.setPwd("pwd"+i);
             member.setName("test"+i);
             member.setImage("http://test"+i);
-            member.setRegDate(LocalDateTime.now());
+//            member.setRegDate(LocalDateTime.now());
             memberRepository.save(member);
         }
     }
