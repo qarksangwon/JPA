@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-@TestPropertySource(locations = "classpath:application-test2.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 @Slf4j
 class OrderRepositoryTest {
     @Autowired

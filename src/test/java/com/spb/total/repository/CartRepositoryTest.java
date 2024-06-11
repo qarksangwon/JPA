@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Slf4j
 @Transactional // 데이터 베이스 논리적 작업 단위
-@TestPropertySource(locations = "classpath:application-test2.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 class CartRepositoryTest {
     @Autowired // 스프링 컨테이너에서 해당 빈에 해당하는 의존성 주입 받는 어노테이션
     CartRepository cartRepository;
