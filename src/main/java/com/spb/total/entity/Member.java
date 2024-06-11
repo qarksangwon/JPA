@@ -1,8 +1,7 @@
 package com.spb.total.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.spb.total.constant.Authority;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,10 +11,11 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name="member")
 @ToString
+@NoArgsConstructor
 public class Member {
     @Id
     @Column(name = "member_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String pwd;
@@ -24,9 +24,17 @@ public class Member {
     private String image;
     private LocalDateTime regDate;
 
-    @PrePersist // DB 에 Insert 되기 전에 실행되는 메소드
-    public void prePersist(){
-        regDate = LocalDateTime.now();
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
+
+    @Builder
+    public Member(String user, String email, String pwd, String name,String image, Authority authority){
+        this.email = email;
+        this.pwd = pwd;
+        this.name = name;
+        this.image = image;
+        this.authority = authority;
+        this.regDate = LocalDateTime.now();
     }
 
 }

@@ -17,11 +17,11 @@ public class MemberController {
     private final MemberService memberService;
 
     //회원 가입
-    @PutMapping("/signup")
-    public ResponseEntity<Boolean> memberCreate(@RequestBody MemberDto memberDto){
-        boolean isTrue = memberService.createMember(memberDto);
-        return ResponseEntity.ok(isTrue);
-    }
+//    @PutMapping("/signup")
+//    public ResponseEntity<Boolean> memberCreate(@RequestBody MemberDto memberDto){
+//        boolean isTrue = memberService.createMember(memberDto);
+//        return ResponseEntity.ok(isTrue);
+//    }
 
     //회원 전체 조회
     @GetMapping("/list")
