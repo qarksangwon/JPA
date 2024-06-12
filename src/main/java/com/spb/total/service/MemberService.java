@@ -47,21 +47,21 @@ public class MemberService {
 //            return true;
 //        }
 //    }
-
-    // 회원 수정
-    public boolean modifyMember(MemberDto memberDto){
-        try{
-            Member member = memberRepository.findByEmail(memberDto.getEmail())
-                    .orElseThrow(()->new RuntimeException("해당 회원 없음"));
-            member.setName(memberDto.getName());
-            member.setImage(memberDto.getImage());
-            memberRepository.save(member);
-            return true;
-        }catch (Exception e){
-            log.error("Error occurred during modifyMember : {}", e.getMessage(), e);
-            return false;
-        }
-    }
+//
+//    // 회원 수정
+//    public boolean modifyMember(MemberDto memberDto){
+//        try{
+//            Member member = memberRepository.findByEmail(memberDto.getEmail())
+//                    .orElseThrow(()->new RuntimeException("해당 회원 없음"));
+//            member.setName(memberDto.getName());
+//            member.setImage(memberDto.getImage());
+//            memberRepository.save(member);
+//            return true;
+//        }catch (Exception e){
+//            log.error("Error occurred during modifyMember : {}", e.getMessage(), e);
+//            return false;
+//        }
+//    }
 
     // 회원 삭제
     public boolean deleteMember(String email){

@@ -16,12 +16,6 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
 
-    //회원 가입
-//    @PutMapping("/signup")
-//    public ResponseEntity<Boolean> memberCreate(@RequestBody MemberDto memberDto){
-//        boolean isTrue = memberService.createMember(memberDto);
-//        return ResponseEntity.ok(isTrue);
-//    }
 
     //회원 전체 조회
     @GetMapping("/list")
@@ -30,12 +24,6 @@ public class MemberController {
         return ResponseEntity.ok(list);
     }
 
-    // 회원 수정
-    @PutMapping("/modify")
-    public ResponseEntity<Boolean> memberModify(@RequestBody MemberDto memberDto){
-        boolean isTrue = memberService.modifyMember(memberDto);
-        return ResponseEntity.ok(isTrue);
-    }
 
     //회원 삭제
     @GetMapping("/delete/{email}")

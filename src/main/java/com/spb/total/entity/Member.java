@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
 @Entity
 @Table(name="member")
 @ToString
@@ -28,7 +27,7 @@ public class Member {
     private Authority authority;
 
     @Builder
-    public Member(String user, String email, String pwd, String name,String image, Authority authority){
+    public Member(String email, String pwd, String name,String image, Authority authority){
         this.email = email;
         this.pwd = pwd;
         this.name = name;
