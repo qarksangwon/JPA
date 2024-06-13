@@ -26,13 +26,13 @@ public class ChatController {
     }
 
     @GetMapping("/list")
-    public List<ChatRoomResDto> findAllRoom() {
-        return chatService.findAllRoom();
+    public ResponseEntity<List<ChatRoomResDto>> findAllRoom() {
+        return ResponseEntity.ok(chatService.findAllRoom());
     }
 
     // 방 정보 가져오기
     @GetMapping("/room/{roomId}")
-    public ChatRoomResDto findRoomById(@PathVariable String roomId) {
-        return chatService.findRoomById(roomId);
+    public ResponseEntity<ChatRoomResDto> findRoomById(@PathVariable String roomId) {
+        return ResponseEntity.ok(chatService.findRoomById(roomId));
     }
 }
