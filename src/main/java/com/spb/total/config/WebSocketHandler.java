@@ -30,7 +30,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         ChatRoomResDto chatRoom = chatService.findRoomById(chatMessage.getRoomId());
         // 세션과 채팅방 ID를 매핑
         sessionRoomIdMap.put(session, chatMessage.getRoomId());
-        chatRoom.handlerActions(session, chatMessage, chatService);
+//        chatRoom.handlerActions(session, chatMessage, chatService);
     }
     @Override
     // WebSocket 연결의 생명주기를 관리하는데 있어 중요한 부분을 담당, 연결 종료 직 후 호출
@@ -39,7 +39,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         String roomId = sessionRoomIdMap.remove(session);
         if (roomId != null) {
             ChatRoomResDto chatRoom = chatService.findRoomById(roomId);
-            chatRoom.handleSessionClosed(session, chatService);
+//            chatRoom.handleSessionClosed(session, chatService);
         }
     }
 }
