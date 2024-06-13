@@ -48,6 +48,18 @@ public class ChatService {
         chatRooms.put(randomId,chatRoom); // 해당 채팅방 번호와 그에 맞게 생성한 채팅방 정보를 값으로 넣음
         return chatRoom;
     }
+    // 채팅방에 입장한 세션 추가
+    public void addSessionAndHandleEnter(String roomId, WebSocketSession session, ChatMessageDto chatMessage) {
+        ChatRoomResDto room = findRoomById(roomId);
+        if (room != null) {
+            room.getSessions().add(session); // 채팅방에 입장한 세션 추가
+            if (chatMessage.getSender() != null) { // 채팅방에 입장한 사용자가 있으면
+                chatMessage.setMessage(chatMessage.getSender() + "님이 입장했습니다.");
+                sendMessageToAll(roomId, chatMessage); // 채팅방에 입장 메시지 전송
+            }
+            log.debug("New session added: " + session);
+        }
+    }
 
     public void removeRoom(String roomId){
         ChatRoomResDto room = chatRooms.get(roomId);

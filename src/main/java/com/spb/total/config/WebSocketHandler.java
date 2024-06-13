@@ -24,22 +24,30 @@ public class WebSocketHandler extends TextWebSocketHandler {
     private final Map<WebSocketSession, String> sessionRoomIdMap = new ConcurrentHashMap<>();
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        String payload = message.getPayload();
+        String payload = message.getPayload(); // 클라이언트가 전송한 메세지
         log.warn("{}", payload);
+        // JSON 문자열 ChatMessageDto로 변환
         ChatMessageDto chatMessage = objectMapper.readValue(payload, ChatMessageDto.class);
-        ChatRoomResDto chatRoom = chatService.findRoomById(chatMessage.getRoomId());
+        String roomId = chatMessage.getRoomId(); // 채팅방 Id
         // 세션과 채팅방 ID를 매핑
         sessionRoomIdMap.put(session, chatMessage.getRoomId());
-//        chatRoom.handlerActions(session, chatMessage, chatService);
+        if(chatMessage.getType() == ChatMessageDto.MessageType.ENTER){
+            chatService.addSessionAndHandleEnter(roomId, session, chatMessage);
+        }else if (chatMessage.getType() == ChatMessageDto.MessageType.CLOSE) {
+            chatService.removeSessionAndHandleExit(roomId, session, chatMessage);
+        } else {
+            chatService.sendMessageToAll(roomId, chatMessage);
+        }
     }
     @Override
-    // WebSocket 연결의 생명주기를 관리하는데 있어 중요한 부분을 담당, 연결 종료 직 후 호출
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         // 세션과 매핑된 채팅방 ID 가져오기
+        log.warn("afterConnectionClosed : {}", session);
         String roomId = sessionRoomIdMap.remove(session);
         if (roomId != null) {
-            ChatRoomResDto chatRoom = chatService.findRoomById(roomId);
-//            chatRoom.handleSessionClosed(session, chatService);
+            ChatMessageDto chatMessage = new ChatMessageDto();
+            chatMessage.setType(ChatMessageDto.MessageType.CLOSE);
+            chatService.removeSessionAndHandleExit(roomId, session, chatMessage);
         }
     }
 }
