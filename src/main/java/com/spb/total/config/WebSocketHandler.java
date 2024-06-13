@@ -1,6 +1,9 @@
 package com.spb.total.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spb.total.dto.ChatMessageDto;
+import com.spb.total.dto.ChatRoomResDto;
+import com.spb.total.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -18,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WebSocketHandler extends TextWebSocketHandler {
     private final ObjectMapper objectMapper;
     private final ChatService chatService;
-    private final Map<webSocketSession, String> sessionRoomIdMap = new ConcurrentHashMap<>();
+    private final Map<WebSocketSession, String> sessionRoomIdMap = new ConcurrentHashMap<>();
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
