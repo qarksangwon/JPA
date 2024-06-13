@@ -40,7 +40,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         }
     }
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status){
         // 세션과 매핑된 채팅방 ID 가져오기
         log.warn("afterConnectionClosed : {}", session);
         String roomId = sessionRoomIdMap.remove(session);
